@@ -84,7 +84,6 @@ def create_video():
 
 if __name__ == '__main__':
 
-    # processes = {}  # global dict for tracking completion status of requests
     max_threads = 4
 
     q.join()

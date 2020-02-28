@@ -15,4 +15,4 @@ Enter the displayed url into your browser and you will be taken to the API home 
 * `http://127.0.0.1:5000/tweets?username=nadimelhelou`
 
 # Multithreading
-This API uses multithreading in order to support multiple parallel calls: four independent threads are used to execute requests. Each API call is added to a queue and will be processed when it reaches the top of the queue. Each thread executes the `create_video()` function, in which the thread executes the first process in the queue and returns the created video.
+This API uses multithreading in order to support multiple parallel calls: four independent threads are used to execute requests. Each API call is added to a queue and will be processed when it reaches the top of the queue. Each thread executes the `create_video()` function, in which the thread executes the request at the top of the queue and returns the created video.

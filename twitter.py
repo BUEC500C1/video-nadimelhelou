@@ -1,6 +1,7 @@
 import os
 import tweepy
 import configparser
+import datetime
 
 
 class Twitter():
@@ -23,7 +24,13 @@ class Twitter():
         # Retrieve 20 most recent tweets
         try:
             tweets = self.api.user_timeline(screen_name=username, count=20, include_rts=1, exclude_replies=True)
-            return tweets
+            today_tweets = []
+            for tweet in tweets:
+                # Checks if tweet was from the last day
+                if (datetime.datetime.now() - tweet.created_at).days < 1:
+                    today_tweets.append(tweet)
+            return today_tweets
+
         except tweepy.error.TweepError as error:
             print("Error: ", end='')
             print(error)

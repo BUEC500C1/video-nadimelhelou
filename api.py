@@ -26,6 +26,9 @@ q = queue.Queue(maxsize=20)
 # Where video are stored when done
 finished_videos = []
 
+# Track all API calls
+history = []
+
 
 @app.route('/', methods=['GET'])
 def home():
@@ -46,9 +49,10 @@ def api_id():
     if tweets == -1:
     	return "<h1>Error: Given twitter username does not exist. Please enter another one.</h1>"
     elif tweets == []:
-    	return "<h1>No tweets found for this username. Please enter another one.</h1>"
+    	return "<h1>No tweets found for this username in the past day. Please enter another one.</h1>"
     else:
     	q.put(username)
+    	delete_video(username)
     	curr_video = "daily_tweets_" + username + ".mp4"
     	
     	print("\nStarted " + username + "'s video")
@@ -84,23 +88,19 @@ def create_video():
 
 if __name__ == '__main__':
 
-    max_threads = 4
+	delete_all_videos()
+	max_threads = 4
+	q.join()
+	threads = []
 
-    q.join()
+	# Create threads
+	for i in range(max_threads):
+		t = threading.Thread(target=create_video)
+		t.setDaemon(True)
+		threads.append(t)
 
-    threads = []
+	# Start threads
+	for t in threads:
+		t.start()
 
-    # Create threads
-    for i in range(max_threads):
-        t = threading.Thread(target=create_video)
-        t.setDaemon(True)
-        threads.append(t)
-
-    # Start threads
-    for t in threads:
-        t.start()
-
-    app.run()
-
-
-# app.run()
+	app.run()

@@ -26,4 +26,3 @@ def test_delete_video():
 			flag = False
 
 	assert flag == True
-    

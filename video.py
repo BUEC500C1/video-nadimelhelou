@@ -52,4 +52,7 @@ def delete_video(username):
             os.remove(video)
 
 
-# create_video("barackobama")
+def delete_all_videos():
+	for video in os.listdir('.'):
+		if video.startswith('daily_tweets_') & video.endswith('.mp4'):
+			os.remove(video)

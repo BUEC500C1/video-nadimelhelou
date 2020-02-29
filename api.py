@@ -35,6 +35,14 @@ def home():
     return "<h1>Twitter Video API</h1><p>This API returns a video with a given user's tweets. By Nadim El Helou</p>"
 
 
+@app.route('/tracking', methods=['GET'])
+def track():
+	out = "All API calls: "
+	for call in history:
+		out += call[0] + " (" + call[1] + "). "
+	return out
+
+
 @app.route('/tweets', methods=['GET'])
 def api_id():
     # Check if a username was given
@@ -54,11 +62,15 @@ def api_id():
     	q.put(username)
     	delete_video(username)
     	curr_video = "daily_tweets_" + username + ".mp4"
+    	history.append([username, "in progress"])
     	
     	print("\nStarted " + username + "'s video")
     	
     	while curr_video not in finished_videos:
     		temp = 1
+
+    	ind = history.index([username, "in progress"])
+    	history[ind][1] = "completed"
     	
     	finished_videos.remove(curr_video)
     	

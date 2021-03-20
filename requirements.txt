@@ -30,7 +30,7 @@ inquirer==2.6.3
 isodate==0.6.0
 itsdangerous==1.1.0
 jdcal==1.4.1
-Jinja2==2.11.1
+Jinja2==2.11.3
 jmespath==0.9.4
 jsonlines==1.2.0
 jsonpointer==2.0

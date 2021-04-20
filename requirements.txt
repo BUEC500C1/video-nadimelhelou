@@ -46,7 +46,7 @@ openpyxl==3.0.3
 packaging==20.1
 Pillow==7.0.0
 pluggy==0.13.1
-py==1.8.1
+py==1.10.0
 pybloom-live==3.0.0
 pycodestyle==2.5.0
 pycryptodomex==3.9.4

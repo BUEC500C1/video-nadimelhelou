@@ -75,7 +75,7 @@ tabulator==1.33.0
 tweepy==3.8.0
 unicodecsv==0.14.1
 Unidecode==0.4.21
-urllib3==1.25.8
+urllib3==1.26.5
 virtualenv==16.7.9
 wcwidth==0.1.8
 Werkzeug==0.16.1
